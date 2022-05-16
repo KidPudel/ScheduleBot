@@ -10,8 +10,14 @@ using Telegram.Bot.Requests;
 using ScheduleBot;
 
 using System.Text.RegularExpressions;
+using Microsoft.Extensions.Configuration;
+using System.Configuration;
 
-var botClient = new TelegramBotClient("5379652671:AAHoTF7WICMDmy9_7MPVYA9JB-aOuzabkrA");
+// hide access_token
+var builder = new ConfigurationBuilder().AddUserSecrets<Program>();
+IConfiguration configuration = builder.Build();
+
+var botClient = new TelegramBotClient(configuration["access_token"]);
 
 var receivingOptions = new ReceiverOptions
 {
